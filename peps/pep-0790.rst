@@ -257,6 +257,18 @@ Backwards Compatibility
 This does not affect any existing ``pyproject.toml``'s, since this was strictly
 not allowed before this PEP.
 
+``pyproject.toml``'s opting in to have the static fields dynamically extended can have
+backards incompatibilities depending on the build frontend and toolings used to interpret
+the static data:
+* When using pre-computed metadata from the sdist or wheel, this change is backwards
+  compatible.
+* The build backend SHOULD be lower-pinned to the version that supports this extension.
+* The build frontend SHOULD be compatible with this change or use a source with
+  pre-computed metadata such as an sdist.
+* Additional tools will be available in `pyproject-metadata <pyprojectmetadata>`__ to
+  extend the dynamic fields in-place in order to bridge the gap for older build frontends
+  and other toolings
+
 Security Implications
 =====================
 
